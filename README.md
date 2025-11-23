@@ -88,7 +88,7 @@ graph TB
     ORACLE --> TTS
     ORACLE --> A2A
     
-    A2A -->|A2A Protocol <br/> JSON/REST| API
+    A2A -->|A2A Protocol<br/>JSON/REST| API
     API -->|HTTPS Response| RESPONSE
     RESPONSE --> SESSION
     
@@ -97,9 +97,9 @@ graph TB
     FLASK --> LOGS
     FLASK --> MEMORY
     
-    style AMBULANCE fill:#e1f5ff
-    style HOSPITAL fill:#fff4e1
-    style DASHBOARD fill:#f0f0f0
+    style AMBULANCE fill:#e1f5ff,stroke:#000,stroke-width:2px,color:#000
+    style HOSPITAL fill:#fff4e1,stroke:#000,stroke-width:2px,color:#000
+    style DASHBOARD fill:#f0f0f0,stroke:#000,stroke-width:2px,color:#000
     style ORACLE fill:#ffcccc
     style A2A fill:#ccffcc
 ```
@@ -108,22 +108,22 @@ graph TB
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    INPUT LAYER                              │
+│                    INPUT LAYER                               │
 ├─────────────────────────────────────────────────────────────┤
 │  [ASR Agent]    [Vitals Monitor]    [Session Memory]        │
 │   Speech           IoT Sensors        Event History         │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                  ORCHESTRATION LAYER                        │
+│                  ORCHESTRATION LAYER                         │
 ├─────────────────────────────────────────────────────────────┤
-│              AEGIS Core Orchestrator                        │
-│        • Pipeline Coordination                              │
-│        • Event Management                                   │
+│              AEGIS Core Orchestrator                         │
+│        • Pipeline Coordination                               │
+│        • Event Management                                    │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                   ANALYSIS LAYER                            │
+│                   ANALYSIS LAYER                             │
 ├─────────────────────────────────────────────────────────────┤
 │  [Context Compactor] [Severity Estimator] [Multi-Specialty] │
 │   Trend Analysis      Shock Index Calc     Specialist Match │
@@ -131,12 +131,12 @@ graph TB
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                  DECISION LAYER                             │
+│                  DECISION LAYER                              │
 ├─────────────────────────────────────────────────────────────┤
-│                  Gemini Oracle Agent                        │
-│         • Synthesizes all agent outputs                     │
-│         • Ward assignment (ICU/HDU/TRAUMA)                  │
-│         • Resource allocation decisions                     │
+│                  Gemini Oracle Agent                         │
+│         • Synthesizes all agent outputs                      │
+│         • Ward assignment (ICU/HDU/TRAUMA)                   │
+│         • Resource allocation decisions                      │
 └────────────────┬─────────────────────┬──────────────────────┘
                  │                     │
         ┌────────▼────────┐   ┌────────▼────────┐
