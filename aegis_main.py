@@ -376,8 +376,8 @@ async def demo_complete_system():
     This simulates a 2-minute patient transport with real-time monitoring.
     """
     print("╔" + "═" * 58 + "╗")
-    print("║" + " " * 10 + "A.E.G.I.S. SYSTEM DEMONSTRATION" + " " * 16 + "║")
-    print("║" + " " * 4 + "Automated Emergency Guidance & Intelligence" + " " * 11 + "║")
+    print("║" + " " * 10 + "A.E.G.I.S. SYSTEM DEMONSTRATION" + " " * 17 + "║")
+    print("║" + " " * 4 + "Automated Emergency Guidance & Intelligence System" + " " * 4 + "║")
     print("╚" + "═" * 58 + "╝")
     
     # Initialize system
