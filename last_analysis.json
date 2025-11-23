@@ -1,0 +1,16 @@
+{
+    "ward": "ICU",
+    "severity_score": 9,
+    "blood": {
+        "required": true,
+        "prbc_units": 6,
+        "predicted_blood_type": "O+"
+    },
+    "specialists_assigned": [
+        {
+            "specialty": "Trauma Surgeon",
+            "eta_minutes": 5
+        }
+    ],
+    "rationale": "Demo example"
+}

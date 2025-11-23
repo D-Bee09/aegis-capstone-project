@@ -1,0 +1,7 @@
+Flask
+requests
+pyttsx3
+gtts
+playsound
+speechrecognition
+pyaudio

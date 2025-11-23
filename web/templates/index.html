@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8"/>
+    <title>AEGIS Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+<header>
+    <h1>AEGIS Dashboard</h1>
+</header>
+
+<main>
+
+<section class="panel">
+    <h2>Last Analysis</h2>
+    {% if last_analysis %}
+    <pre>{{ last_analysis | tojson(indent=2) }}</pre>
+    {% else %}
+    <p>No analysis yet.</p>
+    {% endif %}
+</section>
+
+<section class="panel">
+    <h2>A2A Logs (newest first)</h2>
+
+    {% if a2a_logs %}
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Trace ID</th>
+                <th>Ward</th>
+                <th>Specialists</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for log in a2a_logs %}
+            <tr>
+                <td>{{ log.ts }}</td>
+                <td>{{ log.from_agent }}</td>
+                <td>{{ log.to_agent }}</td>
+                <td>{{ log.trace_id }}</td>
+                <td>{{ log.payload.get('ward') }}</td>
+                <td>
+                    {% if log.payload.get('specialists_assigned') %}
+                        {{ log.payload.get('specialists_assigned')|length }} assigned
+                    {% else %}
+                        {{ log.payload.get('specialists')|length if log.payload.get('specialists') else 0 }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if log.result.error %}
+                        ERROR: {{ log.result.error }}
+                    {% else %}
+                        {{ log.result.get('status') or "OK" }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No A2A logs yet.</p>
+    {% endif %}
+</section>
+
+<section class="panel">
+    <h2>Memory Bank (Recent Entries)</h2>
+
+    {% if memory %}
+        <ul>
+            {% for m in memory[:10] %}
+                <li><strong>{{ m.type }}</strong> @ {{ m.ts }} — {{ m.payload | tojson }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No memory events.</p>
+    {% endif %}
+</section>
+
+</main>
+
+<footer>
+    AEGIS Capstone Dashboard
+</footer>
+
+</body>
+</html>
