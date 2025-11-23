@@ -1,16 +1,16 @@
-# 🛡️ A.E.G.I.S. - Automated Emergency Guidance & Intelligence System
+# 🛡️A.E.G.I.S. - Automated Emergency Guidance & Intelligence System
 
 **A Multi-Agent Clinical Co-Pilot for Pre-Hospital Trauma Care**
 
 ---
 
-## 📋 Executive Summary
+## Executive Summary
 
 A.E.G.I.S. transforms ambulances from transport vehicles into mobile command centers that autonomously orchestrate hospital resources before patient arrival. Using AI-powered analysis and agent-to-agent communication, A.E.G.I.S. ensures that trauma surgeons, operating rooms, and blood products are ready when critical patients arrive—saving precious minutes of the "Golden Hour."
 
 ---
 
-## 🎯 The Problem (Category 1: The Pitch - 30 Points)
+## The Problem (Category 1: The Pitch - 30 Points)
 
 ### Current State of Emergency Care
 
@@ -36,7 +36,7 @@ A 42-year-old motorcyclist with skull fracture and internal bleeding:
 
 ---
 
-## 💡 The Solution
+## The Solution
 
 ### A.E.G.I.S. Architecture
 
@@ -94,7 +94,7 @@ A.E.G.I.S. employs a **four-agent sequential pipeline** that operates autonomous
 
 ---
 
-## 🏗️ Technical Architecture (Category 2: Implementation - 70 Points)
+## Technical Architecture (Category 2: Implementation - 70 Points)
 
 ### Agent Breakdown
 
@@ -115,7 +115,7 @@ A.E.G.I.S. employs a **four-agent sequential pipeline** that operates autonomous
 "BP declining from 110/70 to 85/50 (Δ25 mmHg). 
 HR increasing from 95 to 125 bpm. 
 SpO2 stable at 92%. 
-⚠️ HIGH VOLATILITY - Patient unstable."
+ HIGH VOLATILITY - Patient unstable."
 ```
 
 **Key Code:**
@@ -265,7 +265,7 @@ async def _allocate_specialists(self, required):
 
 ---
 
-## 🔧 Tool Use Examples
+## Tool Use Examples
 
 ### Tool 1: Blood Requirement Calculator
 ```python
@@ -308,7 +308,7 @@ def calculate_severity(vitals: Dict) -> int:
 
 ---
 
-## 📊 Demo Results
+## Demo Results
 
 ### Test Case: Motorcycle Crash with Polytrauma
 
@@ -345,7 +345,7 @@ Vitals: BP 85/50, HR 125, SpO2 92%
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 ### Prerequisites
 ```bash
@@ -399,7 +399,7 @@ async def handle_request(request):
 
 ---
 
-## 📈 Impact Metrics
+## Impact Metrics
 
 ### Time Savings
 - **Traditional workflow:** 15-20 minutes from arrival to OR ready
@@ -418,7 +418,7 @@ async def handle_request(request):
 
 ---
 
-## 🎓 Capstone Scoring Alignment
+## Capstone Scoring Alignment
 
 ### Category 1: The Pitch (30 Points)
 ✅ **Problem clearly defined:** Golden Hour waste, paramedic overload  
@@ -454,7 +454,7 @@ async def handle_request(request):
 
 ---
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 ### Phase 2 Features
 1. **Computer Vision:** Analyze trauma photos from scene
@@ -470,7 +470,7 @@ async def handle_request(request):
 
 ---
 
-## 📚 References
+## References
 
 1. American College of Surgeons - Advanced Trauma Life Support (ATLS)
 2. MTP Protocol Guidelines - Trauma.org
@@ -479,21 +479,20 @@ async def handle_request(request):
 
 ---
 
-## 👥 Contributors
+## Contributors
 
-**Project A.E.G.I.S.** - A Capstone Demonstration of Multi-Agent AI in Critical Care
+**Project A.E.G.I.S.** - A Demonstration of Multi-Agent AI in Critical Care
 
 *Built with Gemini (Google), and a commitment to saving lives through intelligent automation.*
 
 ---
 
-## 📄 License
+## License
 
 MIT License - Use freely for educational and non-commercial purposes.
 
 **Note:** This is a prototype for educational demonstration. Clinical deployment requires extensive validation, regulatory approval, and integration with certified medical devices.
 
 ---
-
 **🛡️ A.E.G.I.S. - Automated Emergency Guidance & Intelligence System**  
 *"From Transport to Transformation"*
