@@ -21,26 +21,26 @@ These gaps lead to delayed care, misallocated resources, and preventable deaths.
 1. **Monitor** patient vitals continuously via IoT medical devices
 2. **Listen** to paramedic verbal reports using speech recognition
 3. **Analyze** severity trends and predict resource needs using AI
-4. **Coordinate** with hospital systems via Agent-to-Agent (A2A) communication
-5. **Speak** critical updates back to paramedics via text-to-speech
+4. **Guide** paramedics step-by-step through medical protocols with real-time feedback
+5. **Respond** to each intervention's success or failure with adaptive instructions
+6. **Coordinate** with hospital systems via Agent-to-Agent (A2A) communication
+7. **Speak** critical updates back to paramedics via text-to-speech
 
-The system operates autonomously in the ambulance, requiring minimal paramedic intervention while ensuring hospitals receive comprehensive, structured patient data before arrival.
+The system operates autonomously in the ambulance with **interactive two-way communication**, guiding paramedics through trauma protocols while ensuring hospitals receive comprehensive, structured patient data before arrival.
 
 ## 🎯 Value Proposition
 
 - **Saves Lives**: Reduces hospital preparation time by 5-10 minutes through automated communication
 - **Hands-Free Operation**: Voice-activated system allows paramedics to focus on patient care
+- **Interactive Guidance**: Step-by-step medical protocols with real-time success/failure feedback
+- **Adaptive Intelligence**: System responds differently based on whether interventions succeed or fail
 - **Optimizes Resources**: Pre-assigns specialists based on AI analysis before ambulance arrival
 - **Reduces Cognitive Load**: Automates documentation and communication, eliminating manual reporting
 - **Improves Coordination**: Standardized A2A protocol ensures no information loss between teams
 - **Enables Predictive Care**: Trend analysis alerts teams to deteriorating patients in real-time
+- **Complete Documentation**: Automatically logs all interventions and outcomes for legal/medical records
 
 ## 🏗️ Architecture
-
-### Multi-Agent System Design
-
-![AEGIS Architecture Diagram](https://via.placeholder.com/800x600/0099ff/ffffff?text=See+Mermaid+Diagram+Below)
-
 #### System Flow Diagram
 
 ```mermaid
@@ -108,22 +108,22 @@ graph TB
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    INPUT LAYER                               │
+│                    INPUT LAYER                              │
 ├─────────────────────────────────────────────────────────────┤
 │  [ASR Agent]    [Vitals Monitor]    [Session Memory]        │
 │   Speech           IoT Sensors        Event History         │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                  ORCHESTRATION LAYER                         │
+│                  ORCHESTRATION LAYER                        │
 ├─────────────────────────────────────────────────────────────┤
-│              AEGIS Core Orchestrator                         │
-│        • Pipeline Coordination                               │
-│        • Event Management                                    │
+│              AEGIS Core Orchestrator                        │
+│        • Pipeline Coordination                              │
+│        • Event Management                                   │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                   ANALYSIS LAYER                             │
+│                   ANALYSIS LAYER                            │
 ├─────────────────────────────────────────────────────────────┤
 │  [Context Compactor] [Severity Estimator] [Multi-Specialty] │
 │   Trend Analysis      Shock Index Calc     Specialist Match │
@@ -131,12 +131,12 @@ graph TB
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│                  DECISION LAYER                              │
+│                  DECISION LAYER                             │
 ├─────────────────────────────────────────────────────────────┤
-│                  Gemini Oracle Agent                         │
-│         • Synthesizes all agent outputs                      │
-│         • Ward assignment (ICU/HDU/TRAUMA)                   │
-│         • Resource allocation decisions                      │
+│                  Gemini Oracle Agent                        │
+│         • Synthesizes all agent outputs                     │
+│         • Ward assignment (ICU/HDU/TRAUMA)                  │
+│         • Resource allocation decisions                     │
 └────────────────┬─────────────────────┬──────────────────────┘
                  │                     │
         ┌────────▼────────┐   ┌────────▼────────┐
@@ -162,6 +162,7 @@ graph TB
 | Agent | Purpose | Input | Output |
 |-------|---------|-------|--------|
 | **ASR Agent** | Converts paramedic speech to structured text (CRITICAL for hands-free operation) | Audio from microphone | Text transcription |
+| **Paramedic Guidance** | Provides step-by-step medical protocols with adaptive feedback | Injury type, vitals, severity | Protocol steps with success/failure responses |
 | **Context Compactor** | Analyzes vital sign trends over time | Array of vital readings | Trend summary (rising/falling/stable) |
 | **Severity Estimator** | Calculates trauma severity score | Current vitals (HR, BP, SpO2) | Severity score (1-10) |
 | **Multi-Specialty Coordinator** | Assigns required medical specialists | Injury description + vitals | List of specialist types |
@@ -227,7 +228,7 @@ graph TB
 ```
 aegis/
 ├── agents/
-│   ├── asr_agent.py              # Speech recognition
+│   ├── asr_agent.py              # Speech recognition with error handling
 │   ├── tts_agent.py              # Text-to-speech feedback
 │   ├── context_compactor.py      # Vital trend analysis
 │   ├── multi_speciality.py       # Specialist assignment logic
@@ -247,8 +248,9 @@ aegis/
 │   │   └── index.html            # Dashboard UI
 │   └── static/
 │       └── style.css             # Dashboard styling
-├── aegis_main.py                 # Main orchestrator
+├── aegis_main.py                 # Main orchestrator with interactive guidance
 ├── hospital_sim.py               # Simulated hospital endpoint
+├── requirements.txt              # Python dependencies
 ├── a2a_logs.json                 # A2A message log
 ├── memory_bank.json              # Persistent memory
 └── last_analysis.json            # Most recent analysis result
@@ -276,26 +278,6 @@ playsound
 speechrecognition
 pyaudio
 ```
-
-### Audio Dependencies (Required for ASR Agent)
-
-**Important**: The ASR Agent is core to AEGIS functionality - it enables hands-free paramedic communication during patient care.
-
-```bash
-# macOS
-brew install portaudio
-pip install pyaudio
-
-# Ubuntu/Debian
-sudo apt-get install portaudio19-dev python3-pyaudio
-pip install pyaudio
-
-# Windows
-pip install pyaudio
-```
-
-**Note**: If you encounter issues with `pyaudio`, you can temporarily test the system by modifying `asr_agent.py` to return mock text input, but full deployment requires working speech recognition.
-
 ### Running the System
 
 **Step 1: Start the Hospital Simulator**
@@ -360,36 +342,170 @@ The web dashboard (`http://localhost:8080`) provides:
 
 ## 🎥 Demo Scenario
 
-1. **Vitals Streaming**: System collects HR, BP, SpO2 every second
-2. **Speech Input**: Paramedic says "Patient fell from height with chest trauma"
-3. **Trend Detection**: Context Compactor detects falling BP, rising HR → shock pattern
-4. **Severity Calculation**: Shock index > 1.5 → Severity score 9/10
-5. **Specialist Assignment**: System assigns Trauma Surgeon, Cardiothoracic Surgeon, Anesthesiologist
-6. **AI Decision**: Gemini Oracle recommends ICU admission
-7. **A2A Handoff**: Structured message sent to hospital with 30-second lead time
-8. **Hospital Confirmation**: Hospital AI confirms ICU bed, specialist ETA 5 minutes
-9. **Voice Feedback**: TTS tells paramedic "Hospital notified. Ward ICU confirmed."
+### Complete Interactive Workflow:
+
+**1. System Initialization**
+```
+🚑 A.E.G.I.S ONLINE
+🔊 AEGIS: "AEGIS system online. All agents initialized."
+```
+
+**2. Vital Signs Monitoring (10 seconds)**
+```
+[01] Vitals: HR=142 BP=85 SpO2=89%
+[02] Vitals: HR=145 BP=82 SpO2=87%
+...
+[10] Vitals: HR=148 BP=78 SpO2=86%
+```
+
+**3. Paramedic Reports Injury**
+```
+🔊 AEGIS: "AEGIS ready. Describe the patient's visible injuries."
+🎤 Paramedic: "Male, 35 years old, fell 20 feet from scaffolding. 
+              Visible chest deformity, paradoxical breathing, 
+              severe respiratory distress."
+```
+
+**4. Visual Patient Status**
+```
+📊 PATIENT VITAL SIGNS MONITOR
+═══════════════════════════════
+Heart Rate:       148 bpm      🔴 CRITICAL
+Blood Pressure:    78 mmHg     🔴 CRITICAL  
+SpO2:              86%         🔴 CRITICAL
+
+Severity Score:   9/10
+Severity:         [█████████░] 🔴
+
+📈 TRENDS:
+  BP Trend:    FALLING
+  HR Trend:    RISING
+  SpO2 Trend:  FALLING
+
+⚠️  Shock Index:   1.90      🔴 SEVERE SHOCK
+```
+
+**5. Interactive Protocol Guidance**
+```
+📋 INITIATING CHEST TRAUMA PROTOCOL
+═══════════════════════════════════
+🔊 AEGIS: "CRITICAL ALERT. Initiating chest trauma protocol."
+
+STEP 1/5
+─────────────────────────────────
+📌 Assess airway, breathing, circulation
+🔊 AEGIS: "Step 1. Assess airway, breathing, circulation."
+🎤 Awaiting response: Say 'COMPLETED' or 'FAILED'
+
+🎤 Paramedic: "Completed"
+✅ STEP COMPLETED
+🔊 AEGIS: "Good. Airway patent. Continue monitoring."
+
+STEP 2/5
+─────────────────────────────────
+📌 Apply high-flow oxygen via non-rebreather mask at 15 liters per minute
+🔊 AEGIS: "Step 2. Apply high-flow oxygen at 15 liters per minute."
+
+🎤 Paramedic: "Completed"
+✅ STEP COMPLETED
+🔊 AEGIS: "Excellent. Oxygen therapy initiated. Monitor SpO2 closely."
+
+STEP 3/5
+─────────────────────────────────
+📌 Examine chest for paradoxical movement, crepitus, or open wounds
+🔊 AEGIS: "Step 3. Examine chest for paradoxical movement."
+
+🎤 Paramedic: "Failed"
+❌ STEP FAILED
+🔊 AEGIS: "Flail chest identified. Apply occlusive dressing. 
+          Prepare needle decompression kit."
+🎤 Describe what happened:
+📝 Paramedic: "Right side moving opposite to breathing, multiple rib fractures"
+
+STEP 4/5
+─────────────────────────────────
+📌 Establish large-bore IV access in both arms
+🔊 AEGIS: "Step 4. Establish large-bore IV access in both arms."
+
+🎤 Paramedic: "Completed"
+✅ STEP COMPLETED
+🔊 AEGIS: "IV access secured. Ready for fluid administration."
+
+STEP 5/5
+─────────────────────────────────
+📌 Begin cautious fluid resuscitation - 250ml bolus, then reassess
+🔊 AEGIS: "Step 5. Begin fluid resuscitation, 250ml bolus."
+
+🎤 Paramedic: "Completed"
+✅ STEP COMPLETED
+🔊 AEGIS: "Fluid bolus administered. Reassessing hemodynamics."
+
+📊 PROTOCOL SUMMARY
+═══════════════════════════════════
+✅ Completed Steps: 4/5
+❌ Failed Steps: 1/5
+🟡 STATUS: GOOD
+
+🔊 AEGIS: "Good effort. Most critical steps completed. 
+          Continue monitoring closely."
+```
+
+**6. Hospital Notification**
+```
+🏥 HOSPITAL NOTIFICATION
+═══════════════════════════════════
+🔊 AEGIS: "Hospital notified. ICU ward confirmed. 
+          Specialists are being mobilized."
+📋 Specialists assigned: Trauma Surgeon, Cardiothoracic Surgeon, Anesthesiologist
+```
+
+**7. ETA Collection**
+```
+🔊 AEGIS: "What is your estimated time of arrival?"
+🎤 Paramedic: "12 minutes"
+🔊 AEGIS: "ETA 12 minutes logged. Maintain current care. Safe transport."
+```
+
+**8. Complete Documentation**
+```
+✅ Session completed.
+   - 10 vital sign readings logged
+   - Chest trauma protocol executed (80% success rate)
+   - Hospital ICU confirmed with 3 specialists mobilized
+   - Complete A2A message logs saved
+   - ETA: 12 minutes
+```
 
 ## 🏆 Why Agents?
 
 Agents are **essential** to A.E.G.I.S because:
 
-1. **Parallel Expertise**: Each agent specializes in one medical/technical domain
-2. **Scalability**: New agents (e.g., ECG interpreter, ultrasound analyzer) can be added without rewriting core logic
-3. **Fault Tolerance**: If one agent fails, others continue functioning
-4. **Real-Time Coordination**: Agents process inputs asynchronously (vitals monitoring while listening to speech)
-5. **Interoperability**: A2A protocol enables communication with external hospital AI agents
+1. **Parallel Expertise**: Each agent specializes in one medical/technical domain (speech recognition, trend analysis, protocol guidance)
+2. **Real-Time Interaction**: The Paramedic Guidance agent provides step-by-step instructions and responds immediately to success/failure feedback
+3. **Adaptive Intelligence**: Agents adjust recommendations based on real-time intervention outcomes
+4. **Scalability**: New agents (e.g., ECG interpreter, ultrasound analyzer) can be added without rewriting core logic
+5. **Fault Tolerance**: If one agent fails, others continue functioning - paramedic can always fall back to manual input
+6. **Real-Time Coordination**: Agents process inputs asynchronously (vitals monitoring while listening to speech and guiding through protocols)
+7. **Interoperability**: A2A protocol enables communication with external hospital AI agents
+8. **Context Awareness**: Each agent maintains state and memory, allowing for contextual responses (e.g., "flail chest identified" only if chest examination fails)
 
-Traditional monolithic systems cannot achieve this level of modularity, real-time responsiveness, and cross-organizational coordination.
+Traditional monolithic systems cannot achieve this level of modularity, real-time responsiveness, interactive feedback, and cross-organizational coordination.
 
 ## 🔮 Future Enhancements
 
-- **Live Gemini Integration**: Replace stub with actual Gemini API calls for advanced reasoning
-- **Real IoT Devices**: Integrate with medical monitors via Bluetooth/serial
-- **Computer Vision**: Add agent for X-ray/ultrasound image analysis
-- **Multi-Hospital Routing**: A2A communication with multiple hospitals for optimal resource matching
-- **Federated Learning**: Train severity models across ambulance fleet data
-- **Mobile App**: Paramedic interface for manual overrides and notifications
+- **Live Gemini Integration**: Replace stub with actual Gemini API calls for advanced medical reasoning and protocol selection
+- **Real IoT Devices**: Integrate with medical monitors via Bluetooth/serial (Zoll monitors, Philips vital sign monitors)
+- **Computer Vision Agent**: Add agent for X-ray/ultrasound image analysis using vision models
+- **Multi-Hospital Routing**: A2A communication with multiple hospitals for optimal resource matching based on specialty availability
+- **Predictive Deterioration**: Machine learning models to predict patient deterioration before vital signs crash
+- **Voice Biometrics**: Verify paramedic identity through voice for secure medical record access
+- **Natural Language Protocol Selection**: Let paramedics describe injuries naturally, AI selects appropriate protocol automatically
+- **Offline Mode**: Local LLM deployment for areas without cellular connectivity
+- **Multi-Language Support**: Protocols and guidance in Spanish, Mandarin, Hindi for diverse paramedic teams
+- **Federated Learning**: Train severity models across ambulance fleet data while preserving patient privacy
+- **Mobile App**: Paramedic interface for manual overrides, protocol review, and real-time map integration
+- **AR Glasses Integration**: Project vital signs and guidance directly into paramedic's field of view
+- **Continuous Learning**: System learns from successful/failed interventions to refine protocol recommendations
 
 ## 📝 Notes
 
@@ -401,13 +517,16 @@ Traditional monolithic systems cannot achieve this level of modularity, real-tim
 
 This project demonstrates mastery of:
 
-1. ✅ **Multi-agent architecture** (6 specialized agents)
-2. ✅ **Agent-to-agent communication** (A2A protocol with logging)
-3. ✅ **Memory systems** (session + persistent storage)
-4. ✅ **Tool integration** (MCP-like tools + OpenAPI)
-5. ✅ **Orchestration patterns** (centralized AEGIS coordinator)
-6. ✅ **Observability** (metrics, logging, dashboard)
-7. ✅ **LLM integration** (Gemini Oracle architecture)
+1. ✅ **Multi-agent architecture** (7 specialized agents including interactive Paramedic Guidance)
+2. ✅ **Agent-to-agent communication** (A2A protocol with logging and hospital integration)
+3. ✅ **Memory systems** (session + persistent storage for protocol execution history)
+4. ✅ **Tool integration** (MCP-like tools + OpenAPI + speech recognition)
+5. ✅ **Orchestration patterns** (centralized AEGIS coordinator managing agent workflow)
+6. ✅ **Observability** (metrics, logging, dashboard, complete audit trail)
+7. ✅ **LLM integration** (Gemini Oracle architecture ready for deployment)
+8. ✅ **Interactive agents** (Real-time feedback loop with adaptive responses)
+9. ✅ **State management** (Protocol execution tracking with success/failure states)
+10. ✅ **Error handling** (Robust speech recognition with timeout and retry logic)
 
 ## 📄 License
 
@@ -418,4 +537,3 @@ This project is a capstone demonstration for educational purposes.
 **A.E.G.I.S**: Because every second counts in the golden hour. 🚑💙
 
 *Automated Emergency Guide Intelligence System - Saving lives through intelligent automation.*
-
