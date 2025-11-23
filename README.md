@@ -1,4 +1,4 @@
-# A.E.G.I.S: Automated Emergency Guide Intelligence System
+# A.E.G.I.S: Automated Emergency Guidance Intelligence System
 
 **AI-Enhanced Guardian**
 
@@ -536,4 +536,5 @@ This project is a capstone demonstration for educational purposes.
 
 **A.E.G.I.S**: Because every second counts in the golden hour. 🚑💙
 
-*Automated Emergency Guide Intelligence System - Saving lives through intelligent automation.*
+*Automated Emergency Guidance Intelligence System - Saving lives through intelligent automation.*
+
