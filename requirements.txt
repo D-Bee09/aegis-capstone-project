@@ -2,6 +2,7 @@ Flask
 requests
 pyttsx3
 gtts
-playsound
+playsound3
 speechrecognition
 pyaudio
+
