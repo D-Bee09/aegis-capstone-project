@@ -1,7 +1,7 @@
 # agents/tts_agent.py
 import pyttsx3
 from gtts import gTTS
-from playsound import playsound
+from playsound3 import playsound
 import os
 
 
@@ -39,4 +39,5 @@ class TTSAgent:
                 if os.path.exists(file):
                     os.remove(file)
         except Exception as e:
+
             print(f"⚠️ TTS Error: {e}")
