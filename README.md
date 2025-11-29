@@ -504,15 +504,6 @@ This project is a capstone demonstration for educational purposes, showcasing ho
 
 ---
 
-## 📬 Project Information
-
-- 📁 **Repository**: aegis-capstone-project
-- 👨‍💻 **Developer**: Balavarshan D
-- 📅 **Status**: Active Development
-- 🏷️ **Type**: Capstone Project / Educational Demonstration
-
----
-
 ## 🌟 The Impact
 
 In emergency medical care, every second matters. A.E.G.I.S transforms those seconds into saved lives by:
@@ -523,3 +514,4 @@ In emergency medical care, every second matters. A.E.G.I.S transforms those seco
 - Providing adaptive, intelligent guidance in the field
 
 **This is the future of emergency medical response.** 🚑✨
+
